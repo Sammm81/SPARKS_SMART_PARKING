@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>{{ $title }}</title>
   </head>
   <body>
 
@@ -58,6 +58,19 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+
+      @foreach ($data['Details'] as $user)
+      <div class="col-3 mb-5 px-5">
+        <div class="card text-center rounded shadow-lg">
+          <div class="card-body">
+            <h3 class="card-title">{{ $user['name'] }}</h3>
+            <p class="card-text">{{ $user['email'] }}</p>
+            <a href="/user/user/class/{{ $user['id'] }}" class="card-link">Register Class</a>
+            <a href="/user/user/{{ $user['id'] }}" class="card-link">More details</a>
+          </div>
+        </div>
+      </div>
+      @endforeach
 
     <!-- Optional JavaScript; choose one of the two! -->
 

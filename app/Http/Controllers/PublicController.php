@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 
 class PublicController extends Controller
 {
     public function index(){
-        return view('landing', [
-            'title' => 'home'
+        return view('Home', [
+            'title' => 'HOME',
+            'data' => User::getAll()
         ]);
     }
 

@@ -13,9 +13,7 @@ use App\Http\Controllers\PublicController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function(){
-    return view('Home');
-});
+Route::get('/', [PublicController::class, 'index']);
 
 Route::get('/about', function(){
     return view('About', [
