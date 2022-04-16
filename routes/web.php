@@ -27,3 +27,6 @@ Route::get('/blog', function(){
     return view('posts');
 });
 
+Route::get('/login', [PublicController::class, 'login']);
+Route::get('/register', [PublicController::class, 'register']);
+
