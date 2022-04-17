@@ -21,14 +21,11 @@
   <body>
 
     @include('Filler.navbar')
-    
-    <div class="container-fluid">
+  
         @yield('hero')
-    </div>
-
-    <div class="container-fluid">
+  
         @yield('content')
-    </div>
+  
       @include('Filler.footer')
   </body>
 </html>

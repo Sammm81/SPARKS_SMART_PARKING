@@ -1,4 +1,4 @@
-@extends('layout/public')
+@extends('Layout/public')
 
 @section('style')
   <link href="{{ asset('css/PublicCSS/login.css') }}" rel="stylesheet" >
