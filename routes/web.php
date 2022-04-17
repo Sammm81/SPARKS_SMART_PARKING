@@ -14,14 +14,7 @@ use App\Http\Controllers\PublicController;
 |
 */
 Route::get('/', [PublicController::class, 'index']);
-
-Route::get('/about', function(){
-    return view('About', [
-        "name" => "Ayub Sarina Sinaga",
-        "email" => "ayubsinaga2019@gmail.com",
-        "image" => "ayub.jpg",
-    ]);
-});
+Route::get('/about', [PublicController::class, 'about']);
 
 Route::get('/blog', function(){
     return view('posts');

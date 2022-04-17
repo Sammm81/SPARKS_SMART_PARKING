@@ -31,4 +31,5 @@
 
       @include('Filler.footer')
   </body>
+  @yield('script')
 </html>
