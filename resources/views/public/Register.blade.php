@@ -1,7 +1,7 @@
 @extends('Layout/public')
 
 @section('style')
-  <link href="{{ asset('css/PublicCSS/register.css') }}" rel="stylesheet" >
+  <link href="{{ asset('css/register.css') }}" rel="stylesheet" >
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
