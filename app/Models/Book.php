@@ -1,21 +1,22 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Http;
 
-class User extends Model
+use Illuminate\Support\Facades\Http;
+use Illuminate\Database\Eloquent\Model;
+
+class Book extends Model
 {
-    // BASIC CRUD MUST BE PERFORMED -- CREATE -- READ -- UPDATE -- DELETE
+   // BASIC CRUD MUST BE PERFORMED -- CREATE -- READ -- UPDATE -- DELETE
 
     /// READ (SELECT)
     public static function getAll(){
-        $response = Http::get('http://localhost/SPARKS_API/allUser.php');
+        $response = Http::get('http://localhost/SPARKS_API/allBook.php');
         return $response->json();
     }
 
     public static function getById($request){
-        $response = Http::post('http://localhost/SPARKS_API/userById.php',[
+        $response = Http::post('http://localhost/SPARKS_API/bookById.php',[
             '' => ''
         ]);
         return $response->json();
@@ -24,14 +25,7 @@ class User extends Model
 
     /// CREATE (INSERT)
     public static function register($request){
-        $response = Http::post('http://localhost/SPARKS_API/register.php',[
-            '' => ''
-        ]);
-        return $response->json();
-    }
-
-    public static function login($request){
-        $response = Http::post('http://localhost/SPARKS_API/login.php',[
+        $response = Http::post('http://localhost/SPARKS_API/addBook.php',[
             '' => ''
         ]);
         return $response->json();
@@ -40,7 +34,7 @@ class User extends Model
 
     /// UPDATE
     public static function updateById($request){
-        $response = Http::post('http://localhost/SPARKS_API/updateById.php',[
+        $response = Http::post('http://localhost/SPARKS_API/updateBookById.php',[
             '' => ''
         ]);
         return $response->json();

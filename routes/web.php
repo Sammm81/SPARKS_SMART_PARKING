@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PublicController;
 
 /*
@@ -13,13 +15,17 @@ use App\Http\Controllers\PublicController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// PUBLIC ROUTES
 Route::get('/', [PublicController::class, 'index']);
-Route::get('/about', [PublicController::class, 'about']);
+Route::get('/{page}', [PublicController::class, 'routes']);
 
-Route::get('/blog', function(){
-    return view('posts');
-});
+// USER ROUTES
+Route::get('/user/{page}', [UserController::class, 'routes']);
+Route::post('/user/areaId', [UserController::class, 'getAreaId']);
+Route::post('/user/slotId', [UserController::class, 'getSlotId']);
+Route::post('/user/placeId', [UserController::class, 'getPlaceId']);
 
-Route::get('/login', [PublicController::class, 'login']);
-Route::get('/register', [PublicController::class, 'register']);
-
+// ADMIN ROUTES
+Route::get('/admin/{page}', [AdminController::class, 'routes']);
+Route::get('/admin/{page}/{action}/{id}', [AdminController::class, 'action']);
