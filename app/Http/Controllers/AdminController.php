@@ -22,31 +22,37 @@ class AdminController extends Controller
             case 'areas':
                 return view('admin/areaView', [
                     'title' => 'SPARKS || AREAS',
+                    'datas' => Area::getAll()
                 ]);
                 break;
             case 'slots':
                 return view('admin/slotView', [
-                    'title' => 'SPARKS || SLOTS'
+                    'title' => 'SPARKS || SLOTS',
+                    'datas' => Slot::getAll()
                 ]);
                 break;
             case 'places':
                 return view('admin/placeView', [
-                    'title' => 'SPARKS || PLACES'
+                    'title' => 'SPARKS || PLACES',
+                    'datas' => Place::getAll()
                 ]);
                 break;
             case 'users':
                 return view('admin/userView', [
-                    'title' => 'SPARKS || USERS'
+                    'title' => 'SPARKS || USERS',
+                    'datas' => User::getAll()
                 ]);
                 break;
             case 'payments':
                 return view('admin/paymentView', [
-                    'title' => 'SPARKS || PAYMENTS'
+                    'title' => 'SPARKS || PAYMENTS',
+                    'datas' => Payment::getAll()
                 ]);
                 break;
-            case 'payments':
+            case 'books':
                 return view('admin/bookView', [
-                    'title' => 'SPARKS || BOOKS'
+                    'title' => 'SPARKS || BOOKS',
+                    'datas' => Book::getAll()
                 ]);
                 break;
             

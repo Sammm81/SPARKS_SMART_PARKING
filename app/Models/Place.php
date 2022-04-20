@@ -16,7 +16,7 @@ class Place extends Model
     }
 
     public static function getById($request){
-        $response = Http::post('http://localhost/SPARKS_API/placeById.php',[
+        $response = Http::asForm()->post('http://localhost/SPARKS_API/placeById.php',[
             '' => ''
         ]);
         return $response->json();
@@ -30,7 +30,7 @@ class Place extends Model
 
     /// CREATE (INSERT)
     public static function register($request){
-        $response = Http::post('http://localhost/SPARKS_API/addPlace.php',[
+        $response = Http::asForm()->post('http://localhost/SPARKS_API/addPlace.php',[
             '' => ''
         ]);
         return $response->json();
@@ -39,7 +39,7 @@ class Place extends Model
 
     /// UPDATE
     public static function updateById($request){
-        $response = Http::post('http://localhost/SPARKS_API/updatePlaceById.php',[
+        $response = Http::asForm()->post('http://localhost/SPARKS_API/updatePlaceById.php',[
             '' => ''
         ]);
         return $response->json();
@@ -48,14 +48,14 @@ class Place extends Model
 
     /// DELETE 
     public static function deleteAll(){
-        $response = Http::post('http://localhost/SPARKS_API/deleteAll.php',[
+        $response = Http::asForm()->post('http://localhost/SPARKS_API/deleteAll.php',[
             '' => ''
         ]);
         return $response->json();
     }
 
     public static function deleteById($request){
-        $response = Http::post('http://localhost/SPARKS_API/deleteById.php',[
+        $response = Http::asForm()->post('http://localhost/SPARKS_API/deleteById.php',[
             '' => ''
         ]);
         return $response->json();

@@ -20,7 +20,7 @@
 @endsection
 
 @section('hero')
-  <main class="form-signin">
+  <main class="form-signin fullscreen">
 
     @if(session()->has('success'))
       <div class="alert alert-success" role="alert">
@@ -38,8 +38,8 @@
       <h1 class="h3 mb-3 fw-normal text-center pt-5 pb-3">Login Here</h1>
 
       <div class="form-floating">
-        <input type="username" name="username" class="form-control" @error('username') is-invalid @enderror id="username" placeholder="name@example.com" autofocus required value="{{ old('email') }}">
-        <label for="username">Username</label>
+        <input type="email" name="email" class="form-control" @error('email') is-invalid @enderror id="email" placeholder="name@example.com" autofocus required value="{{ old('email') }}">
+        <label for="email">Email</label>
         @error('email')
           <div class="invalid-feedback">
             {{ $message }}

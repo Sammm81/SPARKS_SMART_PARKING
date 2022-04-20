@@ -15,7 +15,7 @@ class User extends Model
     }
 
     public static function getById($request){
-        $response = Http::post('http://localhost/SPARKS_API/userById.php',[
+        $response = Http::asForm()->post('http://localhost/SPARKS_API/userById.php',[
             '' => ''
         ]);
         return $response->json();
@@ -23,16 +23,19 @@ class User extends Model
 
 
     /// CREATE (INSERT)
-    public static function register($request){
-        $response = Http::post('http://localhost/SPARKS_API/register.php',[
-            '' => ''
+    public static function register($value){
+        $response = Http::asForm()->post('http://localhost/SPARKS_API/register.php',[
+            'name' => $value['name'],
+            'email' => $value['email'],
+            'password' => $value['password']
         ]);
         return $response->json();
     }
 
     public static function login($request){
-        $response = Http::post('http://localhost/SPARKS_API/login.php',[
-            '' => ''
+        $response = Http::asForm()->post('http://localhost/SPARKS_API/login.php',[
+            'email' => $request['email'],
+            'password' => $request['password']
         ]);
         return $response->json();
     }
@@ -40,7 +43,7 @@ class User extends Model
 
     /// UPDATE
     public static function updateById($request){
-        $response = Http::post('http://localhost/SPARKS_API/updateById.php',[
+        $response = Http::asForm()->post('http://localhost/SPARKS_API/updateById.php',[
             '' => ''
         ]);
         return $response->json();
@@ -49,14 +52,14 @@ class User extends Model
 
     /// DELETE 
     public static function deleteAll(){
-        $response = Http::post('http://localhost/SPARKS_API/deleteAll.php',[
+        $response = Http::asForm()->post('http://localhost/SPARKS_API/deleteAll.php',[
             '' => ''
         ]);
         return $response->json();
     }
 
     public static function deleteById($request){
-        $response = Http::post('http://localhost/SPARKS_API/deleteById.php',[
+        $response = Http::asForm()->post('http://localhost/SPARKS_API/deleteById.php',[
             '' => ''
         ]);
         return $response->json();

@@ -19,12 +19,15 @@ use App\Http\Controllers\PublicController;
 // PUBLIC ROUTES
 Route::get('/', [PublicController::class, 'index']);
 Route::get('/{page}', [PublicController::class, 'routes']);
+Route::post('/register', [PublicController::class, 'register']);
+Route::post('/login', [PublicController::class, 'login']);
 
 // USER ROUTES
 Route::get('/user/{page}', [UserController::class, 'routes']);
-Route::post('/user/areaId', [UserController::class, 'getAreaId']);
-Route::post('/user/slotId', [UserController::class, 'getSlotId']);
-Route::post('/user/placeId', [UserController::class, 'getPlaceId']);
+Route::post('/user/category', [UserController::class, 'getCategory']);
+Route::post('/user/area', [UserController::class, 'getAreaId']);
+Route::post('/user/slot', [UserController::class, 'getSlotId']);
+Route::post('/user/place', [UserController::class, 'getPlaceId']);
 
 // ADMIN ROUTES
 Route::get('/admin/{page}', [AdminController::class, 'routes']);

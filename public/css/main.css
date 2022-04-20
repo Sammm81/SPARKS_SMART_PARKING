@@ -1,0 +1,26 @@
+.bg-yellow{
+    background-color: rgb(218, 148, 36);
+}
+
+.fullscreen{
+    min-height: 90vh;
+}
+
+.halfscreen{
+    min-height: 45vh;
+}
+
+.card-long{
+    width: 400px;
+}
+
+.link:hover{
+    font-size: larger;
+    transition: ease-in-out .2s all;
+}
+
+.form-button:hover{
+    transform: scale(1.05);
+    transition: ease-in-out .2s all;
+    background-color: rgb(235, 165, 67);
+}

@@ -19,7 +19,8 @@ class PublicController extends Controller
         switch ($page) {
             case 'about':
                 return view('public/About', [
-                    'title' => 'SPARKS || ABOUT'
+                    'title' => 'SPARKS || ABOUT',
+                    'data' => User::getAll()
                 ]);
                 break;
             case 'register':
@@ -45,14 +46,23 @@ class PublicController extends Controller
             'email' => $request->email,
             'password' => $request->password
         );
-        User::register($value);
+        $response = User::register($value);
+        return redirect('/login');
     }
 
     public function login(Request $request){
-        // $request->session()->put('name', $request->name);
-        // $request->session()->put('email', 'value');
-        // $request->session()->put('password', 'password');
+        $value = array(
+            'email' => $request->email,
+            'password' => $request->password
+        );
+        $response = User::login($value);
         
-        User::login($request);
+        $request->session()->put('name', $response['Details']['name']);
+        $request->session()->put('email', $response['Details']['email']);
+        $request->session()->put('admin', $response['Details']['admin']);
+        $request->session()->put('balance', $response['Details']['balance']);
+        $request->session()->put('status', 'online');
+
+        return redirect('/user/dashboard');
     }
 }

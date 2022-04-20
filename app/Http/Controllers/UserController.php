@@ -68,6 +68,12 @@ class UserController extends Controller
         }
     }
 
+    public function getCategory(Request $request){
+        // $request->session()->put('category', $request->category);
+
+        return redirect('user/place');
+    }
+
     public function getPlaceId(Request $request){
         // $request->session()->put('placeId', $request->placeId);
 

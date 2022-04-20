@@ -17,7 +17,7 @@ class Payment extends Model
     }
 
     public static function getById($request){
-        $response = Http::post('http://localhost/SPARKS_API/paymentById.php',[
+        $response = Http::asForm()->post('http://localhost/SPARKS_API/paymentById.php',[
             '' => ''
         ]);
         return $response->json();
@@ -26,7 +26,7 @@ class Payment extends Model
 
     /// CREATE (INSERT)
     public static function insertOne($request){
-        $response = Http::post('http://localhost/SPARKS_API/addPayment.php',[
+        $response = Http::asForm()->post('http://localhost/SPARKS_API/addPayment.php',[
             '' => ''
         ]);
         return $response->json();
@@ -35,7 +35,7 @@ class Payment extends Model
 
     /// UPDATE
     public static function updateById($request){
-        $response = Http::post('http://localhost/SPARKS_API/updatePaymentById.php',[
+        $response = Http::asForm()->post('http://localhost/SPARKS_API/updatePaymentById.php',[
             '' => ''
         ]);
         return $response->json();
@@ -49,7 +49,7 @@ class Payment extends Model
     }
 
     public static function deleteById($request){
-        $response = Http::post('http://localhost/SPARKS_API/deleteById.php',[
+        $response = Http::asForm()->post('http://localhost/SPARKS_API/deleteById.php',[
             '' => ''
         ]);
         return $response->json();
