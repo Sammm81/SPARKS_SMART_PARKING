@@ -18,6 +18,8 @@
                     <th scope="col">Token</th>
                     <th scope="col">Verified</th>
                     <th scope="col">Record</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +31,8 @@
                         <td>{{ $data['token'] }}</td>
                         <td>{{ $data['verified'] }}</td>
                         <td>{{ $data['record'] }}</td>
+                        <td><a href="/admin/edit/book/{{ $data['id'] }}" class="btn btn-warning">EDIT</a></td>
+                        <td><a href="/admin/delete/book/{{ $data['id'] }}" class="btn btn-danger">DELETE</a></td>
                     </tr>
                 @endforeach
             </tbody>

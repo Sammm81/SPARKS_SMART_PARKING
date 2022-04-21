@@ -12,16 +12,21 @@
 
 @section('content')
 <div class="container mt-5 fullscreen">
-    <form action="/user/slot" method="post">
-        @csrf
-        <input type="hidden" value="placeId" name="placeId">
-        <div class="card shadow-lg p-3" style="width: 10rem;">
-            <div class="card-body">
-                <h5 class="card-title text-center fs-2">A1</h5>
-                <button type="submit"class="btn btn-primary">Choose</button>
+    <div class="row">
+        @foreach ($data['Details'] as $slot)
+        <form action="/user/slot" method="post" class="col-3">
+            @csrf
+            <input type="hidden" value="{{ $slot['slot_id'] }}" name="slotId">
+            <div class="card shadow-lg p-3" style="width: 20rem;">
+                <div class="card-body">
+                    <h5 class="card-title fs-4">{{ $slot['slot_name'] }}</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <button type="submit"class="btn btn-primary">Choose</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+        @endforeach
+    </div>
 </div>
 @endsection
 

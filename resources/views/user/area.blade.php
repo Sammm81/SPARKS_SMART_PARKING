@@ -12,17 +12,21 @@
 
 @section('content')
 <div class="container mt-5 fullscreen">
-    <form action="/user/area" method="post">
-        @csrf
-        <input type="hidden" value="placeId" name="placeId">
-        <div class="card shadow-lg p-3" style="width: 20rem;">
-            <div class="card-body">
-                <h5 class="card-title fs-4">Front Lobby</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <button type="submit"class="btn btn-primary">Choose</button>
+    <div class="row">
+        @foreach ($data['Details'] as $area)
+        <form action="/user/area" method="post" class="col-3">
+            @csrf
+            <input type="hidden" value="{{ $area['area_id'] }}" name="areaId">
+            <div class="card shadow-lg p-3" style="width: 20rem;">
+                <div class="card-body">
+                    <h5 class="card-title fs-4">{{ $area['area_name'] }}</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <button type="submit"class="btn btn-primary">Choose</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+        @endforeach
+    </div>
 </div>
 @endsection
 

@@ -8,6 +8,7 @@ use App\Models\Slot;
 use App\Models\User;
 use App\Models\Place;
 use App\Models\Payment;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -19,19 +20,19 @@ class AdminController extends Controller
                 ]);
                 break;
 
-            case 'areas':
+            case 'area':
                 return view('admin/areaView', [
                     'title' => 'SPARKS || AREAS',
                     'datas' => Area::getAll()
                 ]);
                 break;
-            case 'slots':
+            case 'slot':
                 return view('admin/slotView', [
                     'title' => 'SPARKS || SLOTS',
                     'datas' => Slot::getAll()
                 ]);
                 break;
-            case 'places':
+            case 'place':
                 return view('admin/placeView', [
                     'title' => 'SPARKS || PLACES',
                     'datas' => Place::getAll()
@@ -43,13 +44,13 @@ class AdminController extends Controller
                     'datas' => User::getAll()
                 ]);
                 break;
-            case 'payments':
+            case 'payment':
                 return view('admin/paymentView', [
                     'title' => 'SPARKS || PAYMENTS',
                     'datas' => Payment::getAll()
                 ]);
                 break;
-            case 'books':
+            case 'book':
                 return view('admin/bookView', [
                     'title' => 'SPARKS || BOOKS',
                     'datas' => Book::getAll()
@@ -63,54 +64,215 @@ class AdminController extends Controller
                 break;
         }
     }
-
-    public function action($page, $action, $id){
-        switch ($action) {
-            case 'ADD':
-                return view('admin/'.$page.'Form', [
-                    'title' => 'SPARKS || '.$action,
-                    'action' => 'add'
-                ]);
+ 
+    public function delete($page, $id){
+        switch ($page) {
+            case 'users':
+                User::deleteById($id);
+                return redirect('/admin/users');
                 break;
-            case 'EDIT':
-                return view('admin/'.$page.'Form', [
-                    'title' => 'SPARKS || '.$action,
-                    'action' => 'edit'
-                ]);
+            case 'slot':
+                Slot::deleteById($id);
+                return redirect('/admin/slot');
                 break;
-            case 'DELETE':
-                $this->delete($page, $id);
+            case 'area':
+                Area::deleteById($id);
+                return redirect('/admin/area');
                 break;
+            case 'place':
+                Place::deleteById($id);
+                return redirect('/admin/place');
+                break;
+            case 'book':
+                Book::deleteById($id);
+                return redirect('/admin/book');
+                break;
+            case 'payment':
+                Payment::deleteById($id);
+                return redirect('/admin/payment');
+                break;
+            
             default:
-                return view('admin/'.$page.'Form', [
-                    'title' => 'SPARKS || DASHBOARD',
-                ]);
+                return redirect('admin/dashboard');
                 break;
         }
     }
 
-    public function delete($page, $id){
+    public function add($page){
+        return view('admin/'.$page.'Form', [
+            'title' => 'SPARKS || EDIT',
+            'action' => 'add'
+        ]);
+    }
+
+    public function addPost($page, Request $request){
         switch ($page) {
-            case 'user':
-                User::deleteById($id);
-                break;
-            case 'place':
-                Place::deleteById($id);
-                break;
-            case 'area':
-                Area::deleteById($id);
+            case 'users':
+                $value = array(
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => $request->password
+                );
+                $response = User::register($value);
+                return redirect('/admin/users');
                 break;
             case 'slot':
-                Slot::deleteById($id);
+                $value = array(
+                    'areaId' => $request->areaId,
+                    'name' => $request->name
+                );
+                Slot::addSlot($value);
+                return redirect('admin/slot');
+                break;
+            case 'area':
+                $value = array(
+                    'placeId' => $request->placeId,
+                    'name' => $request->name
+                );
+                Area::addArea($value);
+                return redirect('admin/area');
+                break;
+            case 'place':
+                $value = array(
+                    'name' => $request->name
+                );
+                Place::addPlace($value);
+                return redirect('admin/place');
                 break;
             case 'book':
-                Book::deleteById($id);
+                $value = array(
+                    'userId' => $request->userId,
+                    'slotId' => $request->slotId
+                );
+                Book::addBook($value);
+                return redirect('admin/book');
                 break;
             case 'payment':
-                Payment::deleteById($id);
+                $value = array(
+                    'bookId' => $request->bookId
+                );
+                Payment::addPayment($value);
+                return redirect('admin/payment');
                 break;
+            
             default:
-                return redirect('admin/'.$page.'s');
+                return redirect('admin/dashboard');
+                break;
+        }
+    }
+    
+    public function edit($page, $id){
+        switch ($page) {
+            case 'users':
+                return view('admin/usersForm', [
+                    'title' => 'SPARKS || EDIT',
+                    'action' => 'edit',
+                    'data' => User::getById($id)
+                ]);
+                break;
+            case 'slot':
+                return view('admin/slotForm', [
+                    'title' => 'SPARKS || EDIT',
+                    'action' => 'edit',
+                    'data' => Slot::getById($id),
+                ]);
+                break;
+            case 'area':
+                return view('admin/areaForm', [
+                    'title' => 'SPARKS || EDIT',
+                    'action' => 'edit',
+                    'data' => Area::getById($id)
+                ]);
+                break;
+            case 'place':
+                return view('admin/placeForm', [
+                    'title' => 'SPARKS || EDIT',
+                    'action' => 'edit',
+                    'data' => Place::getById($id)
+                ]);
+                break;
+            case 'book':
+                $value = array(
+                    'bookId' => $id
+                );
+                return view('admin/bookForm', [
+                    'title' => 'SPARKS || EDIT',
+                    'action' => 'edit',
+                    'data' => Book::getById($value)
+                ]);
+                break;
+            case 'payment':
+                return view('admin/paymentForm', [
+                    'title' => 'SPARKS || EDIT',
+                    'action' => 'edit',
+                    'data' => Payment::getById($id)
+                ]);
+                break;
+            
+            default:
+                return redirect('admin/dashboard');
+                break;
+        }
+    }
+
+    public function editPost($page, Request $request){
+        switch ($page) {
+            case 'users':
+                $value = array(
+                    'id' => $request->id,
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'admin' => $request->admin,
+                    'balance' => $request->balance
+                );
+                User::updateById($value);
+                return redirect('admin/dashboard');
+                break;
+            case 'slot':
+                $value = array(
+                    'id' => $request->id,
+                    'slot_name' => $request->name
+                );
+                $values = array('Details' => $value);
+                Slot::updateById($values, $request->book, $request->available);
+                return redirect('admin/dashboard');
+                break;
+            case 'area':
+                $value = array(
+                    'id' => $request->id,
+                    'name' => $request->name,
+                    'full' => $request->full
+                );
+                Area::updateById($value);
+                return redirect('admin/dashboard');
+                break;
+            case 'place':
+                $value = array(
+                    'id' => $request->id,
+                    'name' => $request->name,
+                    'full' => $request->full
+                );
+                Place::updateById($value);
+                return redirect('admin/dashboard');
+                break;
+            case 'book':
+                $value = array(
+                    'bookId' => $request->id
+                );
+                Book::updateById($value, $request->verified);
+                return redirect('admin/dashboard');
+                break;
+            case 'payment':
+                $value = array(
+                    'id' => $request->id,
+                    'paid' => $request->paid
+                );
+                Payment::updateById($value);
+                return redirect('admin/dashboard');
+                break;
+            
+            default:
+                return redirect('admin/dashboard');
                 break;
         }
     }

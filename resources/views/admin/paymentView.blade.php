@@ -16,6 +16,8 @@
                     <th scope="col">Book_id</th>
                     <th scope="col">Paid</th>
                     <th scope="col">Record</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +27,8 @@
                         <td>{{ $data['book_id'] }}</td>
                         <td>{{ $data['paid'] }}</td>
                         <td>{{ $data['record'] }}</td>
+                        <td><a href="/admin/edit/payment/{{ $data['id'] }}" class="btn btn-warning">EDIT</a></td>
+                        <td><a href="/admin/delete/payment/{{ $data['id'] }}" class="btn btn-danger">DELETE</a></td>
                     </tr>
                 @endforeach
             </tbody>

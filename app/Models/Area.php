@@ -16,24 +16,26 @@ class Area extends Model
     }
 
     public static function getById($request){
-        $response = Http::asForm()->post('http://localhost/SPARKS_API/areaById.php',[
-            '' => ''
+        $response = Http::asForm()->post('http://localhost/SPARKS_API/getById.php',[
+            'id' => $request,
+            'table' => 'area'
         ]);
         return $response->json();
     }
 
     public static function getAvailableArea($request){
         $response = Http::asForm()->post('http://localhost/SPARKS_API/getAvailableArea.php',[
-            '' => ''
+            'place_id' => $request
         ]);
         return $response->json();
     }
 
 
     /// CREATE (INSERT)
-    public static function register($request){
+    public static function addArea($request){
         $response = Http::asForm()->post('http://localhost/SPARKS_API/addArea.php',[
-            '' => ''
+            'place_id' => $request['placeId'],
+            'name' => $request['name']
         ]);
         return $response->json();
     }
@@ -42,7 +44,9 @@ class Area extends Model
     /// UPDATE
     public static function updateById($request){
         $response = Http::asForm()->post('http://localhost/SPARKS_API/updateAreaById.php',[
-            '' => ''
+            'id' => $request['id'],
+            'name' => $request['name'],
+            'full' => $request['full']
         ]);
         return $response->json();
     }
@@ -58,7 +62,8 @@ class Area extends Model
 
     public static function deleteById($request){
         $response = Http::asForm()->post('http://localhost/SPARKS_API/deleteById.php',[
-            '' => ''
+            'id' => $request,
+            'table' => 'area'
         ]);
         return $response->json();
     }

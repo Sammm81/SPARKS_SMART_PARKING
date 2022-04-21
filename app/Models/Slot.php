@@ -16,33 +16,38 @@ class Slot extends Model
     }
 
     public static function getById($request){
-        $response = Http::asForm()->post('http://localhost/SPARKS_API/slotById.php',[
-            '' => ''
+        $response = Http::asForm()->post('http://localhost/SPARKS_API/getById.php',[
+            'id' => $request,
+            'table' => 'slot'
         ]);
         return $response->json();
     }
 
     public static function getAvailableSlot($request){
         $response = Http::asForm()->post('http://localhost/SPARKS_API/getAvailableSlot.php',[
-            '' => ''
+            'area_id' => $request
         ]);
         return $response->json();
     }
 
 
     /// CREATE (INSERT)
-    public static function register($request){
+    public static function addSlot($request){
         $response = Http::asForm()->post('http://localhost/SPARKS_API/addSlot.php',[
-            '' => ''
+            'area_id' => $request['areaId'],
+            'name' => $request['name']
         ]);
         return $response->json();
     }
 
 
     /// UPDATE
-    public static function updateById($request){
+    public static function updateById($request, $book=0, $available=1){
         $response = Http::asForm()->post('http://localhost/SPARKS_API/updateSlotById.php',[
-            '' => ''
+            'id' => $request['Details']['id'],
+            'name' => $request['Details']['slot_name'],
+            'available' => $available,
+            'book' => $book
         ]);
         return $response->json();
     }
@@ -58,7 +63,8 @@ class Slot extends Model
 
     public static function deleteById($request){
         $response = Http::asForm()->post('http://localhost/SPARKS_API/deleteById.php',[
-            '' => ''
+            'id' => $request,
+            'table' => 'slot'
         ]);
         return $response->json();
     }

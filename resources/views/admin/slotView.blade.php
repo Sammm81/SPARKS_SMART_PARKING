@@ -17,6 +17,8 @@
                     <th scope="col">Name</th>
                     <th scope="col">Book</th>
                     <th scope="col">Available</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +29,8 @@
                         <td>{{ $data['name'] }}</td>
                         <td>{{ $data['book'] }}</td>
                         <td>{{ $data['available'] }}</td>
+                        <td><a href="/admin/edit/slot/{{ $data['id'] }}" class="btn btn-warning">EDIT</a></td>
+                        <td><a href="/admin/delete/slot/{{ $data['id'] }}" class="btn btn-danger">DELETE</a></td>
                     </tr>
                 @endforeach
             </tbody>

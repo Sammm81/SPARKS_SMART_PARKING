@@ -21,6 +21,7 @@ Route::get('/', [PublicController::class, 'index']);
 Route::get('/{page}', [PublicController::class, 'routes']);
 Route::post('/register', [PublicController::class, 'register']);
 Route::post('/login', [PublicController::class, 'login']);
+Route::get('/logout', [PublicController::class, 'logout']);
 
 // USER ROUTES
 Route::get('/user/{page}', [UserController::class, 'routes']);
@@ -28,7 +29,13 @@ Route::post('/user/category', [UserController::class, 'getCategory']);
 Route::post('/user/area', [UserController::class, 'getAreaId']);
 Route::post('/user/slot', [UserController::class, 'getSlotId']);
 Route::post('/user/place', [UserController::class, 'getPlaceId']);
+Route::post('/user/token', [UserController::class, 'verifyToken']);
 
 // ADMIN ROUTES
 Route::get('/admin/{page}', [AdminController::class, 'routes']);
-Route::get('/admin/{page}/{action}/{id}', [AdminController::class, 'action']);
+Route::get('/admin/add/{page}', [AdminController::class, 'add']);
+Route::get('/admin/edit/{page}/{id}', [AdminController::class, 'edit']);
+Route::get('/admin/delete/{page}/{id}', [AdminController::class, 'delete']);
+
+Route::post('/admin/add/{page}', [AdminController::class, 'addPost']);
+Route::post('/admin/edit/{page}', [AdminController::class, 'editPost']);

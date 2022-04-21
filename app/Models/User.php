@@ -15,8 +15,9 @@ class User extends Model
     }
 
     public static function getById($request){
-        $response = Http::asForm()->post('http://localhost/SPARKS_API/userById.php',[
-            '' => ''
+        $response = Http::asForm()->post('http://localhost/SPARKS_API/getById.php',[
+            'id' => $request,
+            'table' => 'users'
         ]);
         return $response->json();
     }
@@ -43,8 +44,12 @@ class User extends Model
 
     /// UPDATE
     public static function updateById($request){
-        $response = Http::asForm()->post('http://localhost/SPARKS_API/updateById.php',[
-            '' => ''
+        $response = Http::asForm()->post('http://localhost/SPARKS_API/updateUserById.php',[
+            'id' => $request['id'],
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'admin' => $request['admin'],
+            'balance' => $request['balance']
         ]);
         return $response->json();
     }
@@ -60,7 +65,8 @@ class User extends Model
 
     public static function deleteById($request){
         $response = Http::asForm()->post('http://localhost/SPARKS_API/deleteById.php',[
-            '' => ''
+            'id' => $request,
+            'table' => 'users'
         ]);
         return $response->json();
     }

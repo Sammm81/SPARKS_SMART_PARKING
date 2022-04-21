@@ -8,12 +8,11 @@
         <a class="nav-link fs-4 text-warning active" aria-current="page" href="/">Home</a>
         <a class="nav-link fs-4 text-warning" href="/about">About </a>
         <a class="nav-link fs-4 text-warning" href="/menu">Menu</a>
-        <a class="nav-link fs-4 text-warning" href="/contact"">Contact</a>
-        <a class="nav-link fs-4 text-warning d-block d-md-none" href="/register">Register</a>
-        <a class="nav-link fs-4 text-warning d-block d-md-none" href="/login">Login</a>
+        <a class="nav-link fs-4 text-warning" href="/contact">Contact</a>
       </div>
     </div>
     <a class="nav-link d-none d-xl-block d-xxl-block fs-4 text-warning" href="/register">Register</a>
     <a class="nav-link d-none d-xl-block d-xxl-block fs-4 text-warning" href="/login">Login</a>
+    <a class="nav-link d-none d-xl-block d-xxl-block fs-4 text-warning" href="/logout">Logout</a>
   </div>
 </nav>
