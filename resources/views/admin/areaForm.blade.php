@@ -31,7 +31,7 @@
     
         {{-- id --}}
         <div class="form-floating">
-            <input type="text" disabled name="id" value="{{ $data['Details']['id'] }}" class="form-control rounded-top" id="id" placeholder="id">
+            <input type="hidden" name="id" value="{{ $data['Details']['id'] }}" class="form-control rounded-top" id="id" placeholder="id">
             <label for="id">id</label>
         </div>
 

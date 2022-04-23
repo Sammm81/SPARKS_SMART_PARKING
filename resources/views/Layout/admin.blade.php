@@ -15,11 +15,15 @@
   </head>
   <body>
 
-    @include('Filler.navbar')
+    @if ($session['status'] == 'online')
+      @include('Filler.navbarAuth')
+    @else
+      @include('Filler.navbar')
+    @endif
 
     @yield('content')
 
-      @include('Filler.footer')
+    @include('Filler.footer')
   </body>
   @yield('script')
 </html>

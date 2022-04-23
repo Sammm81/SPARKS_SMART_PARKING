@@ -12,47 +12,56 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function routes($page){
+    public function routes($page, Request $request){
+        $session = $request->session()->all();
+
         switch ($page) {
             case 'dashboard':
                 return view('admin/dashboard', [
                     'title' => 'SPARKS || DASHBOARD',
+                    'session' => $session
                 ]);
                 break;
 
             case 'area':
                 return view('admin/areaView', [
                     'title' => 'SPARKS || AREAS',
+                    'session' => $session,
                     'datas' => Area::getAll()
                 ]);
                 break;
             case 'slot':
                 return view('admin/slotView', [
                     'title' => 'SPARKS || SLOTS',
+                    'session' => $session,
                     'datas' => Slot::getAll()
                 ]);
                 break;
             case 'place':
                 return view('admin/placeView', [
                     'title' => 'SPARKS || PLACES',
+                    'session' => $session,
                     'datas' => Place::getAll()
                 ]);
                 break;
             case 'users':
                 return view('admin/userView', [
                     'title' => 'SPARKS || USERS',
+                    'session' => $session,
                     'datas' => User::getAll()
                 ]);
                 break;
             case 'payment':
                 return view('admin/paymentView', [
                     'title' => 'SPARKS || PAYMENTS',
+                    'session' => $session,
                     'datas' => Payment::getAll()
                 ]);
                 break;
             case 'book':
                 return view('admin/bookView', [
                     'title' => 'SPARKS || BOOKS',
+                    'session' => $session,
                     'datas' => Book::getAll()
                 ]);
                 break;
@@ -98,9 +107,12 @@ class AdminController extends Controller
         }
     }
 
-    public function add($page){
+    public function add($page, Request $request){
+        $session = $request->session()->all();
+
         return view('admin/'.$page.'Form', [
             'title' => 'SPARKS || EDIT',
+            'session' => $session,
             'action' => 'add'
         ]);
     }
@@ -161,12 +173,15 @@ class AdminController extends Controller
         }
     }
     
-    public function edit($page, $id){
+    public function edit($page, $id, Request $request){
+        $session = $request->session()->all();
+
         switch ($page) {
             case 'users':
                 return view('admin/usersForm', [
                     'title' => 'SPARKS || EDIT',
                     'action' => 'edit',
+                    'session' => $session,
                     'data' => User::getById($id)
                 ]);
                 break;
@@ -174,13 +189,15 @@ class AdminController extends Controller
                 return view('admin/slotForm', [
                     'title' => 'SPARKS || EDIT',
                     'action' => 'edit',
-                    'data' => Slot::getById($id),
+                    'session' => $session,
+                    'data' => Slot::getById($id)
                 ]);
                 break;
             case 'area':
                 return view('admin/areaForm', [
                     'title' => 'SPARKS || EDIT',
                     'action' => 'edit',
+                    'session' => $session,
                     'data' => Area::getById($id)
                 ]);
                 break;
@@ -188,6 +205,7 @@ class AdminController extends Controller
                 return view('admin/placeForm', [
                     'title' => 'SPARKS || EDIT',
                     'action' => 'edit',
+                    'session' => $session,
                     'data' => Place::getById($id)
                 ]);
                 break;
@@ -198,6 +216,7 @@ class AdminController extends Controller
                 return view('admin/bookForm', [
                     'title' => 'SPARKS || EDIT',
                     'action' => 'edit',
+                    'session' => $session,
                     'data' => Book::getById($value)
                 ]);
                 break;
@@ -205,6 +224,7 @@ class AdminController extends Controller
                 return view('admin/paymentForm', [
                     'title' => 'SPARKS || EDIT',
                     'action' => 'edit',
+                    'session' => $session,
                     'data' => Payment::getById($id)
                 ]);
                 break;
@@ -226,7 +246,7 @@ class AdminController extends Controller
                     'balance' => $request->balance
                 );
                 User::updateById($value);
-                return redirect('admin/dashboard');
+                return redirect('admin/users');
                 break;
             case 'slot':
                 $value = array(
@@ -235,7 +255,7 @@ class AdminController extends Controller
                 );
                 $values = array('Details' => $value);
                 Slot::updateById($values, $request->book, $request->available);
-                return redirect('admin/dashboard');
+                return redirect('admin/slot');
                 break;
             case 'area':
                 $value = array(
@@ -244,7 +264,7 @@ class AdminController extends Controller
                     'full' => $request->full
                 );
                 Area::updateById($value);
-                return redirect('admin/dashboard');
+                return redirect('admin/area');
                 break;
             case 'place':
                 $value = array(
@@ -253,14 +273,14 @@ class AdminController extends Controller
                     'full' => $request->full
                 );
                 Place::updateById($value);
-                return redirect('admin/dashboard');
+                return redirect('admin/place');
                 break;
             case 'book':
                 $value = array(
                     'bookId' => $request->id
                 );
                 Book::updateById($value, $request->verified);
-                return redirect('admin/dashboard');
+                return redirect('admin/book');
                 break;
             case 'payment':
                 $value = array(
@@ -268,7 +288,7 @@ class AdminController extends Controller
                     'paid' => $request->paid
                 );
                 Payment::updateById($value);
-                return redirect('admin/dashboard');
+                return redirect('admin/payment');
                 break;
             
             default:

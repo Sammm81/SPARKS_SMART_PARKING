@@ -17,8 +17,16 @@
     <title>{{ $title }}</title>
   </head>
   <body>
-
-    @include('Filler.navbar')
+    @if (isset($session['status']))
+      @if ($session['status'] == 'online')
+        @include('Filler.navbarAuth')
+      @else
+        @include('Filler.navbar')
+    @endif
+    @else
+      @include('Filler.navbar')
+    @endif
+    
   
     @yield('hero')
 

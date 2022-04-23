@@ -15,7 +15,11 @@
   </head>
   <body>
 
-    @include('Filler.navbar')
+    @if ($session['status'] == 'online')
+      @include('Filler.navbarAuth')
+    @else
+      @include('Filler.navbar')
+    @endif
     
     @yield('hero')
 

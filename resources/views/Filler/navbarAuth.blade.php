@@ -5,13 +5,10 @@
     <a class="navbar-brand m-auto nav-text text-warning" href="#">SMART-PARKING</a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav mx-4">
-        <a class="nav-link fs-4 text-warning active" aria-current="page" href="/">Home</a>
-        <a class="nav-link fs-4 text-warning" href="/about">About </a>
-        <a class="nav-link fs-4 text-warning" href="/menu">Menu</a>
-        <a class="nav-link fs-4 text-warning" href="/contact">Contact</a>
+        <a class="nav-link fs-4 text-warning active" aria-current="page" href="/user/dashboard">Dashboard</a>
+        <a class="nav-link fs-4 text-warning" aria-current="page" href="/user/profile">Profile</a>
       </div>
     </div>
-    <a class="nav-link d-none d-xl-block d-xxl-block fs-4 text-warning" href="/register">Register</a>
-    <a class="nav-link d-none d-xl-block d-xxl-block fs-4 text-warning" href="/login">Login</a>
+    <a class="nav-link d-none d-xl-block d-xxl-block fs-4 text-warning" href="/logout">Logout</a>
   </div>
 </nav>

@@ -25,7 +25,7 @@ class Book extends Model
     
     public static function getBookDetails($request){
         $response = Http::asForm()->post('http://localhost/SPARKS_API/getBookDetails.php',[
-            'book_id' => $request
+            'id' => $request
         ]);
         return $response->json();
     }

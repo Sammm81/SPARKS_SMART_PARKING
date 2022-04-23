@@ -10,6 +10,7 @@ class PublicController extends Controller
 {
     public function index(Request $request){
         $session_data = $request->session()->all();
+        $request->session()->put('status', 'offline');
         return view('public/Home', [
             'title' => 'SPARKS || HOME',
             'session_data' => $session_data
@@ -38,9 +39,18 @@ class PublicController extends Controller
                     'session_data' => $session_data
                 ]);
                 break;
+            case 'logout':
+                $request->session()->put('id', '');
+                $request->session()->put('name', '');
+                $request->session()->put('email', '');
+                $request->session()->put('admin', 0);
+                $request->session()->put('balance', '');
+                $request->session()->put('status', 'offline');
+                return redirect('/');
+                break;
             
             default:
-                return redirect('/');
+                echo "hello";
                 break;
         }
     }
@@ -76,9 +86,5 @@ class PublicController extends Controller
         else{
             return redirect('admin/dashboard');
         }
-    }
-
-    public function logout(Request $request){
-        $request->session()->flush();
     }
 }

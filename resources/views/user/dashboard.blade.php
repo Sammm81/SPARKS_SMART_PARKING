@@ -10,7 +10,7 @@
         {{-- Top Section --}}
         <div class="row">
             <div class="col-12">
-                <h1 class="display-1 py-5">Welcome {{ $session_data['name']}}!</h1>
+                <h1 class="display-1 py-5">Welcome <span><a href="/user/profile" class="text-decoration-none text-dark">{{ $session['name']}}</a></span>!</h1>
             </div>
             <img src="{{ asset('icons/calendar2-check.svg') }}" alt="" width="200px" height="200px" class="col-2 offset-1 rounded">
             <div class="d-flex align-items-center p-5 offset-1 col-8 ">
@@ -21,7 +21,6 @@
 @endsection
 
 @section('content')
-@dump($session_data)
     {{-- Promo Section --}}
     <div class="container-fluid bg-dark text-white py-5">
         <div class="row">
@@ -112,6 +111,7 @@
                         <th scope="col"><h6 class="h6 text-center">Slot</h6></th>
                         <th scope="col"><h6 class="h6 text-center">Verified</h6></th>
                         <th scope="col"><h6 class="h6 text-center">Paid</h6></th>
+                        <th scope="col"><h6 class="h6 text-center"></h6></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -122,11 +122,19 @@
                             <td><h6 class="h6 text-center">{{ $data['slot_name'] }}</h6></td>
                             <td><h6 class="h6 text-center">{{ $data['verified'] }}</h6></td>
                             <td><h6 class="h6 text-center">{{ $data['paid'] }}</h6></td>
+                            @if ($data['paid'] == 0)
+                                <td><h6 class="h6 text-center btn btn-danger">NOT YET</h6></td>
+                            @else
+                                <td><h6 class="h6 text-center btn btn-success">PAID</h6></td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="container-fluid bg-warning py-5">
+        <a href="/user/book" class="text-decoration-none text-dark"><h1 class="display-1 text-center py-5">SEE LAST BOOKING</h1></a>
     </div>
 @endsection
 

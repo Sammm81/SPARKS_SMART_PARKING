@@ -21,15 +21,16 @@ Route::get('/', [PublicController::class, 'index']);
 Route::get('/{page}', [PublicController::class, 'routes']);
 Route::post('/register', [PublicController::class, 'register']);
 Route::post('/login', [PublicController::class, 'login']);
-Route::get('/logout', [PublicController::class, 'logout']);
 
 // USER ROUTES
+Route::get('/user/payment/{id}', [UserController::class, 'pay']);
 Route::get('/user/{page}', [UserController::class, 'routes']);
 Route::post('/user/category', [UserController::class, 'getCategory']);
 Route::post('/user/area', [UserController::class, 'getAreaId']);
 Route::post('/user/slot', [UserController::class, 'getSlotId']);
 Route::post('/user/place', [UserController::class, 'getPlaceId']);
 Route::post('/user/token', [UserController::class, 'verifyToken']);
+Route::post('/user/topup', [UserController::class, 'topUp']);
 
 // ADMIN ROUTES
 Route::get('/admin/{page}', [AdminController::class, 'routes']);
