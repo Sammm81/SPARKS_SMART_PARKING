@@ -11,6 +11,7 @@
 @endsection
 
 @section('content')
+@dump($session)
 <div class="container mt-5 fullscreen">
     <div class="row">
         @foreach ($data['Details'] as $slot)
@@ -21,6 +22,7 @@
                 <div class="card-body">
                     <h5 class="card-title fs-4">{{ $slot['slot_name'] }}</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="{{ $slot['slot_id'] }}">here</a>
                     <button type="submit"class="btn btn-primary">Choose</button>
                 </div>
             </div>

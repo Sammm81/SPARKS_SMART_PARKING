@@ -11,8 +11,9 @@
 @endsection
 
 @section('content')
-    <div class="container bg-dark fullscreen p-5">
-        @if (is_null($data))
+@dump($session)
+<div class="container bg-dark fullscreen p-5">
+        @if ($data['Details'] != NULL)
             <h1 class="h1 text-white">Place <span style="margin-left: 180px"> : {{ $data['Details']['place_name']}}</span></h1><br>
             <h1 class="h1 text-white">Area <span style="margin-left: 190px"> : {{ $data['Details']['area_name']}}</span></h1><br>
             <h1 class="h1 text-white">Slot <span style="margin-left: 200px"> : {{ $data['Details']['slot_name']}}</span></h1><br>

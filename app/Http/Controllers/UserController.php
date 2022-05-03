@@ -101,10 +101,13 @@ class UserController extends Controller
     }
 
     public function getSlotId(Request $request){
-        $session = $request->session()->all();
         $request->session()->put('slotId', $request->slotId);
+        $session = $request->session()->all();
         $response = Book::addBook($session);
-        var_dump($response);
+
+        $slot = Slot::getById($request->slotId);
+        $editSlot = Slot::updateById($slot, 1, 0);
+
         $request->session()->put('bookId', $response['Details']['id']);
         return redirect('user/book');
     }
@@ -129,6 +132,7 @@ class UserController extends Controller
         $request->session()->decrement('balance', $decrementBy = 2000);
         $session = $request->session()->all();
         $user = User::getById($session['id']);
+        $slot = Slot::getById($session['slotId']);
 
         $value = array(
             'id' => $id,
@@ -142,6 +146,7 @@ class UserController extends Controller
             'balance' => $session['balance']
         );
 
+        Slot::updateById($slot, 0, 1);
         Payment::updateById($value);
         User::updateById($user);
 
