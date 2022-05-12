@@ -8,7 +8,7 @@
     @if ($action == 'add')
     <form action="/admin/add/area" method="POST" class="container fullscreen">
         @csrf
-        <h1 class="h3 fw-lighter text-center mt-5 py-5 display-3">EDIT AREA</h1>
+        <h1 class="h3 fw-lighter text-center mt-5 py-5 display-3">ADD AREA</h1>
     
         {{-- Place_id --}}
         <div class="form-floating">

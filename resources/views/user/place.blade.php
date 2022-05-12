@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-@dump($session)
+{{-- @dump($session) --}}
 <div class="container mt-5 fullscreen">
     <div class="row">
         @foreach ($data['Details'] as $place)
