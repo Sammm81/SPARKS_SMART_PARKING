@@ -16,7 +16,11 @@
   <body>
 
     @if ($session['status'] == 'online')
+    @if ($session['admin'] == 1)
+      @include('Filler.navbarAuthAdmin')
+    @else
       @include('Filler.navbarAuth')
+    @endif
     @else
       @include('Filler.navbar')
     @endif

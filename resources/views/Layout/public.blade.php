@@ -18,10 +18,14 @@
   </head>
   <body>
     @if (isset($session['status']))
-      @if ($session['status'] == 'online')
-        @include('Filler.navbarAuth')
-      @else
-        @include('Filler.navbar')
+    @if ($session['status'] == 'online')
+    @if ($session['admin'] == 1)
+      @include('Filler.navbarAuthAdmin')
+    @else
+      @include('Filler.navbarAuth')
+    @endif
+    @else
+      @include('Filler.navbar')
     @endif
     @else
       @include('Filler.navbar')
